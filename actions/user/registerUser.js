@@ -2,8 +2,8 @@ const Cloudant = require('@cloudant/cloudant');
 
 //I know this isn't safe
 const CLOUDANT_DATABASE= "vive_users";
-const CLOUDANT_USERNAME = "9ff96b9c-0f10-4071-baab-d45827e371b2-bluemix";
-const CLOUDANT_PASSWORD = "276257bad4485cdd695814bc145fee9eee7407e4cc30223e75c6f4f3c77de350"
+const CLOUDANT_USERNAME = "use ur username"; // if u can use environment variable good.
+const CLOUDANT_PASSWORD = "use ur password"
 
 var cloudant;
 
