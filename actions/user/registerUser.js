@@ -1,3 +1,22 @@
+const Cloudant = require('@cloudant/cloudant');
+
+//I know this isn't safe
+const CLOUDANT_DATABASE= "vive_users";
+const CLOUDANT_USERNAME = "9ff96b9c-0f10-4071-baab-d45827e371b2-bluemix";
+const CLOUDANT_PASSWORD = "276257bad4485cdd695814bc145fee9eee7407e4cc30223e75c6f4f3c77de350"
+
+var cloudant;
+
+if(cloudant === null){
+    cloudant = new Cloudant({
+    account: CLOUDANT_USERNAME,
+    password: CLOUDANT_PASSWORD
+  });
+}
+
+  
+  
+  
 /**
  * This action downloads an IBM logo, and returns an object to be written to a cloudant database.
  * This action is idempotent. If it fails, it can be retried.
@@ -13,35 +32,23 @@
   * main() will be run when you invoke this action
   *
   * @param Cloud Functions actions accept a single parameter, which must be a JSON object.
-  * 
-  * params must include the following properties
-  *     contributor: boolean
-  *     symptoms_start: string
-  *     share_covid_status: boolean
-  *     risk: [high, low, mid]
-  *     
   *
   * @return The output of this action, which must be a JSON object.
   *
   */
 function main(params) {
 
-var Cloudant = require('@cloudant/cloudant');
-    var cloudant;
-	
 	// Configure database connection
-  var cloudant = new Cloudant({
-    account: CLOUDANT_USERNAME,
-    password: CLOUDANT_PASSWORD
-  });
-//   var database = cloudant.db.use(CLOUDANT_DATABASE);
   
-  data = { a: 1, b: 'two' };
+  var database = cloudant.db.use(CLOUDANT_DATABASE);
+  
+//   console.log(params)
 
-    // return insert(database, data, params);
-    console.log(params);
-    
-    return data;
+return params
+  
+//   data = { a: 1, b: 'two' }
+
+//     return insert(database, data, params);
 
 }
 
