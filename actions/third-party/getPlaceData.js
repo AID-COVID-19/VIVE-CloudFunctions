@@ -19,25 +19,28 @@ function main(params){
     const database = cloudant.db.use(CLOUDANT_DATABASE);
     const {long, lat, radius} = params;
 
-    if(long === undefined || lat === undefined || radius === unddefined){
+    if(long === undefined || lat === undefined || radius === undefined){
         return {
             error: "Not enough arguments"
         }
     }
-    // Find the city within 25km (15 miles) of Lexington, MA.
 var query = {
     lat: lat, lon: long,
     radius: radius,
     include_docs:true
   };
-  
-  database.geo('city', 'city_points', query, function(err, result) {
-    if (err) {
-      throw err;
-    }
-  
-    console.log('Cities found: %d', result.rows.length); // "Cities found: 1"
-    console.log(result.rows[0].doc._id);                 // "Boston"
-  });
+
+  return getLocations(database, query);
+}
+
+const getLocations = (db, query) => {
     
+    return new Promise(function (resolve, reject) {
+        db.geo('city', 'city_points', query, function(err, result) {
+            if (err){
+                reject(error);
+            }
+            resolve(result)
+          });
+    });  
 }
