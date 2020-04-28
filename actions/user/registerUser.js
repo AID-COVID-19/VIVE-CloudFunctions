@@ -46,14 +46,14 @@ function main(params) {
   
   const { id, contributor, symptoms_start, share_covid_status, risk } = params;
   // check that params contain all the info it needs. if not send error status code 
-  if (id === undefined || contributor === undefined || symptoms_start === undefined || share_covid_status === undefined || risk === undefined) {
+  if (contributor === undefined || symptoms_start === undefined || share_covid_status === undefined || risk === undefined) {
     return {
       error: "Not Enough Arguments",
     }
 }
 //   console.log(params)
   
-  const data = { id, contributor, symptoms_start, share_covid_status, risk }; // this data is what is being added to the database. structure it from params
+  const data = { contributor, symptoms_start, share_covid_status, risk }; // this data is what is being added to the database. structure it from params
 
     return insert(database, data);
 
